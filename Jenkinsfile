@@ -19,6 +19,12 @@ dependencyCheckPublisher pattern: ''
 
 }
 }
+stage('Scan for vulnerabilities') {
+    steps {
+        sh 'java -jar dvja-*.war && zap-cli quick-scan --self-contained --spider -r http://127.0.0.1 && zap-cli report -o zap-report.html -f html'
+    }
+}
+
 
     stage('Publish to S3') {
       steps {
@@ -31,4 +37,10 @@ dependencyCheckPublisher pattern: ''
       }
     }
   }
+post {
+    always {
+        archiveArtifacts artifacts: 'zap-report.html', fingerprint: true
+    }
+}
+
 }
