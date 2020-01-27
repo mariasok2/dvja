@@ -19,12 +19,15 @@ dependencyCheckPublisher pattern: ''
 
 }
 }
+<<<<<<< HEAD
 stage('Scan for vulnerabilities') {
     steps {
         sh 'zap-cli quick-scan --self-contained --spider -r http://127.0.0.1 && zap-cli report -o zap-report.html -f html'
     }
 }
 
+=======
+>>>>>>> parent of 6f35eee... Update Jenkinsfile
 
     stage('Publish to S3') {
       steps {
@@ -37,10 +40,4 @@ stage('Scan for vulnerabilities') {
       }
     }
   }
-post {
-    always {
-        archiveArtifacts artifacts: 'zap-report.html', fingerprint: true
-    }
-}
-
 }
