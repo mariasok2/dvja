@@ -21,7 +21,7 @@ dependencyCheckPublisher pattern: ''
 }
 stage('Analysis') {
       steps {
-        sh "mvn --batch-mode -V -U -e checkstyle:checkstyle pmd:pmd pmd:cpd spotbugs:spotbugs"
+        sh "mvn --batch-mode -V -U -e checkstyle:checkstyle pmd:pmd pmd:cpd"
       }
     }
 
